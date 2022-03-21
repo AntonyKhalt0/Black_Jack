@@ -7,6 +7,7 @@ class DeckCards
   
   def initialize
     @deck = {}
+    creating_deck
   end
 
   def creating_deck
@@ -17,7 +18,7 @@ class DeckCards
   end
 
   def deck_shuffle
-    @deck.to_a.shuffle[0]
+    @deck.to_a.shuffle
   end
 
   def part_deck(unicod)

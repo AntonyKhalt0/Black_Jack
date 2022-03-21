@@ -10,7 +10,12 @@ class Gamer
 
   def add_card(playing_card)
     @playing_cards.push(playing_card)
-    @total_points += playing_card.values[0]
+    if playing_card[0].include?'T'
+      @total_points <= 10 ? choice = 0 : choice = 1
+      @total_points+= playing_card.dig(1, choice)
+    else
+      @total_points += playing_card[1]
+    end
   end
    
   def show_playing_cards
