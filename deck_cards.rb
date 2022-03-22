@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'card'
+
 class DeckCards
   BASE_DECK = { '2' => 2, '3' => 3, '4' => 4, '5' => 5, '6' => 6,
                 '7' => 7, '8' => 8, '9' => 9, '10' => 10,
@@ -8,7 +10,7 @@ class DeckCards
   attr_reader :deck
 
   def initialize
-    @deck = {}
+    @deck = []
     creating_deck
   end
 
@@ -24,11 +26,13 @@ class DeckCards
   end
 
   def part_deck(unicod)
-    part_deck = BASE_DECK.transform_keys { |key| "#{key}#{unicod}" }
-    @deck.merge!(part_deck)
+    BASE_DECK.each do |suit, value|
+      card = Card.new("#{suit}#{unicod}", value)
+      @deck.push(card)
+    end
   end
 
   def delete_card(playing_card)
-    @deck.delete(playing_card[0])
+    @deck.delete(playing_card)
   end
 end

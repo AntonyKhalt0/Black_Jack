@@ -7,21 +7,29 @@ class Gamer
   def initialize(user_name = 'Dealer')
     @name = user_name
     @bank = 100
-    @playing_cards = []
-    @total_points = 0
+    clear_playing_cards
+    clear_total_points
   end
 
   def add_card(playing_card)
     @playing_cards.push(playing_card)
-    if playing_card[0].include? 'T'
+    if playing_card.suit.include? 'T'
       choice = @total_points <= 10 ? 1 : 0
-      @total_points += playing_card.dig(1, choice)
+      @total_points += playing_card.value[choice]
     else
-      @total_points += playing_card[1].to_i
+      @total_points += playing_card.value
     end
   end
 
+  def clear_playing_cards
+    @playing_cards = []
+  end
+
+  def clear_total_points
+    @total_points = 0
+  end
+
   def show_playing_cards
-    @playing_cards.each { |playing_card| playing_card[0] }
+    @playing_cards.map(&:suit)
   end
 end
