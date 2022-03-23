@@ -8,6 +8,8 @@ require_relative 'game_result'
 class Game
   include GameResult
 
+  MAX_CARD = 3
+
   attr_reader :user, :deacler, :deck, :bank, :data_table
 
   def initialize
@@ -26,7 +28,7 @@ class Game
   end
 
   def auto_open_cards
-    open_cards if @user.playing_cards.length == 3 && @dealer.playing_cards.length == 3
+    open_cards if @user.playing_cards.length == MAX_CARD && @dealer.playing_cards.length == MAX_CARD
   end
 
   def dealer_action
@@ -40,7 +42,7 @@ class Game
   end
 
   def add_card_on_hands(gamer)
-    gamer.add_card(playing_card) if gamer.playing_cards.length != 3
+    gamer.add_card(playing_card) if gamer.playing_cards.length != MAX_CARD
     open_cards
   end
 

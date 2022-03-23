@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 module GameResult
+  MAX_POINTS = 21
+
   def game_result
-    if dealer_points > 21 && user_points < dealer_points
+    if dealer_points > MAX_POINTS && user_points < dealer_points
       win_result
-    elsif user_points <= 21 && user_points == dealer_points
+    elsif user_points <= MAX_POINTS && user_points == dealer_points
       drawn_result
-    elsif user_points > 21 && dealer_points > 21
+    elsif user_points > MAX_POINTS && dealer_points > MAX_POINTS
       loss_result
     else
       puts 'Вы проиграли!'
